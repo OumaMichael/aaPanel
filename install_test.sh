@@ -3,11 +3,12 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 LANG=en_US.UTF-8
 
-if [ $(whoami) != "root" ]; then
-    # echo "Please use the [root] user to execute the aapanel installation script!"
-    echo -e "Non-root install, please try the following solutions: \n   1.Please switch to [root] user install \n   2.Try executing the following install commands: \n     sudo bash $0 $@"
-    exit 1
-fi
+# Temporarily commented out for testing
+# if [ $(whoami) != "root" ]; then
+#     # echo "Please use the [root] user to execute the aapanel installation script!"
+#     echo -e "Non-root install, please try the following solutions: \n   1.Please switch to [root] user install \n   2.Try executing the following install commands: \n     sudo bash $0 $@"
+#     exit 1
+# fi
 
 is64bit=$(getconf LONG_BIT)
 if [ "${is64bit}" != '64' ]; then
