@@ -264,5 +264,5 @@ This project is licensed under the terms specified in the LICENSE file.
 
 ---
 
-*Last updated: $(date)*
+
 *aaPanel CI/CD and Security Enhancement Project*
