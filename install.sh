@@ -3,6 +3,21 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 LANG=en_US.UTF-8
 
+# GPG Verification for script integrity
+if command -v gpg >/dev/null 2>&1; then
+    if [ -f "install.sh.asc" ]; then
+        if gpg --verify install.sh.asc install.sh 2>/dev/null; then
+            echo "GPG signature verified for install.sh"
+        else
+            echo "Warning: GPG signature verification failed for install.sh"
+        fi
+    else
+        echo "Warning: No GPG signature file found for install.sh"
+    fi
+else
+    echo "GPG not available, skipping signature verification"
+fi
+
 if [ $(whoami) != "root" ]; then
     # echo "Please use the [root] user to execute the aapanel installation script!"
     echo -e "Non-root install, please try the following solutions: \n   1.Please switch to [root] user install \n   2.Try executing the following install commands: \n     sudo bash $0 $@"
