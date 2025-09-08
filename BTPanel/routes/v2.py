@@ -1,4 +1,4 @@
-# coding: utf-8
+skio# coding: utf-8
 # +-------------------------------------------------------------------
 # | aapanel V2路由
 # +-------------------------------------------------------------------
@@ -7,6 +7,7 @@
 # | Author: hwliang <hwl@bt.cn>
 # +-------------------------------------------------------------------
 from BTPanel.app import *
+from class_v2.telemetry_v2 import Telemetry
 
 @app.route('/new', methods=method_get)
 @app.route('/new/<path:sub_path>', methods=method_get)
@@ -23,6 +24,13 @@ def index_new(sub_path: str = ''):
     data['lan'] = public.GetLan('index')
     data['js_random'] = get_js_random()
     return render_template('index_new.html', data=data)
+
+@app.route(route_v2 + '/telemetry', methods=method_get)
+def telemetry_v2():
+    comReturn = comm.local()
+    if comReturn: return comReturn
+    telemetry = Telemetry()
+    return telemetry.get_telemetry_report()
 
 @app.route(route_v2 + '/', methods=method_all)
 def home_v2():
