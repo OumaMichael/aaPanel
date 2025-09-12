@@ -3,7 +3,7 @@ PATH=/www/server/panel/pyenv/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/u
 export PATH
 install_tmp='/tmp/bt_install.pl'
 #public_file=/www/server/panel/install/public.sh
-download_Url=https://node.aapanel.com
+download_Url=https://plugins.wwwpanel.org
 pluginPath=/www/server/panel/plugin/btwaf
 remote_dir="total2"
 pyVersion=$(python -c 'import sys;print(sys.version_info[0]);')

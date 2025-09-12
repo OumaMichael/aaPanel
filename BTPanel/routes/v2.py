@@ -1,8 +1,8 @@
-skio# coding: utf-8
+# coding: utf-8
 # +-------------------------------------------------------------------
-# | aapanel V2路由
+# | wwwpanel V2路由
 # +-------------------------------------------------------------------
-# | Copyright (c) 2015-2099 aapanel(http://www.aapanel.com) All rights reserved.
+# | Copyright (c) 2015-2099 wwwpanel(http://www.wwwpanel.com) All rights reserved.
 # +-------------------------------------------------------------------
 # | Author: hwliang <hwl@bt.cn>
 # +-------------------------------------------------------------------
