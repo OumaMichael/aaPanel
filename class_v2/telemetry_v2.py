@@ -1,8 +1,8 @@
 # coding: utf-8
 # +-------------------------------------------------------------------
-# | aaPanel Telemetry Module
+# | wwwpanel Telemetry Module
 # +-------------------------------------------------------------------
-# | Copyright (c) 2015-2099 aaPanel(www.aapanel.com) All rights reserved.
+# | Copyright (c) 2015-2099 wwwpanel(www.wwwpanel.com) All rights reserved.
 # +-------------------------------------------------------------------
 # | Author: AI Assistant
 # +-------------------------------------------------------------------
@@ -12,6 +12,7 @@ import json
 import time
 import os
 import public
+import requests
 from datetime import datetime
 
 
@@ -38,7 +39,7 @@ class Telemetry:
             return {'error': str(e)}
 
     def get_panel_info(self):
-        """Get aaPanel specific information"""
+        """Get wwwpanel specific information"""
         try:
             panel_info = {
                 'version': self.get_panel_version(),
@@ -54,7 +55,7 @@ class Telemetry:
             return {'error': str(e)}
 
     def get_panel_version(self):
-        """Get aaPanel version"""
+        """Get wwwpanel version"""
         try:
             version_file = '/www/server/panel/version.pl'
             if os.path.exists(version_file):
@@ -148,3 +149,17 @@ class Telemetry:
             return public.returnJson(True, f'Telemetry data exported to {filename}')
         except Exception as e:
             return public.returnJson(False, 'Failed to export telemetry data: ' + str(e))
+
+    def send_telemetry_data(self, get=None):
+        """Send telemetry data to the telemetry API"""
+        try:
+            data = self.collect_telemetry_data()
+            api_url = 'http://localhost:5000/telemetry'  # Assuming the API runs locally
+
+            response = requests.post(api_url, json=data, timeout=10)
+            if response.status_code == 200:
+                return public.returnJson(True, 'Telemetry data sent successfully')
+            else:
+                return public.returnJson(False, f'Failed to send telemetry data: {response.text}')
+        except Exception as e:
+            return public.returnJson(False, 'Failed to send telemetry data: ' + str(e))
